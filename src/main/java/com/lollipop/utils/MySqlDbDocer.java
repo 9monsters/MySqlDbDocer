@@ -20,7 +20,7 @@ import com.lowagie.text.Table;
 import com.lowagie.text.rtf.RtfWriter2;
 
 /**
- * 数据字典生成器 Mysql
+ * The type My sql db docer.
  */
 public class MySqlDbDocer {
     //键类型字典
@@ -41,10 +41,10 @@ public class MySqlDbDocer {
         }
     }
 
-    private static String schema = "*"; //目标数据库名
-    private static String url = "jdbc:mysql://*:3307/" + schema + "?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true";//链接url
-    private static String username = "*"; //用户名
-    private static String password = "*"; //密码
+    private static String schema = "*";
+    private static String url = "jdbc:mysql://*:*/" + schema + "?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true";
+    private static String username = "*";
+    private static String password = "*";
 
     //查询所有表的sql语句
     private static String sql_get_all_tables =
@@ -57,6 +57,12 @@ public class MySqlDbDocer {
                     " from information_schema.`COLUMNS` " +
                     " where TABLE_NAME='{table_name}' and TABLE_SCHEMA='" + schema + "'";
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws Exception the exception
+     */
     public static void main(String[] args) throws Exception {
         //初始化word文档
         Document document = new Document(PageSize.A4);
@@ -84,10 +90,10 @@ public class MySqlDbDocer {
     }
 
     /**
-     * 添加一个空行
+     * Add blank.
      *
-     * @param document
-     * @throws Exception
+     * @param document the document
+     * @throws Exception the exception
      */
     public static void addBlank(Document document) throws Exception {
         Paragraph ph = new Paragraph("");
@@ -96,11 +102,11 @@ public class MySqlDbDocer {
     }
 
     /**
-     * 添加包含字段详细信息的表格
+     * Add table detail.
      *
-     * @param document
-     * @param columns
-     * @throws Exception
+     * @param document the document
+     * @param columns  the columns
+     * @throws Exception the exception
      */
     public static void addTableDetail(Document document, List columns) throws Exception {
         Table table = new Table(7);
@@ -206,27 +212,12 @@ public class MySqlDbDocer {
         document.add(table);
     }
 
-    /**
-     * 增加表概要信息
-     *
-     * @param dcument
-     * @param arr
-     * @param i
-     * @throws Exception
-     */
     private static void addTableMetaData(Document dcument, String[] arr, int i) throws Exception {
         Paragraph ph = new Paragraph(i + ". 表名: " + arr[0] + '\n' + "说明: " + (arr[1] == null ? "" : arr[1]));
         ph.setAlignment(Paragraph.ALIGN_LEFT);
         dcument.add(ph);
     }
 
-    /**
-     * 把SQL语句查询出列表
-     *
-     * @param sql
-     * @param conn
-     * @return
-     */
     private static List getDataBySQL(String sql, Connection conn) {
         Statement stmt = null;
         ResultSet rs = null;
@@ -254,11 +245,6 @@ public class MySqlDbDocer {
         return list;
     }
 
-    /**
-     * 获取数据库连接
-     *
-     * @return
-     */
     private static Connection getConnection() {
         try {
             return DriverManager.getConnection(url, username, password);
