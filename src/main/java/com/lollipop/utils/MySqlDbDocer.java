@@ -143,25 +143,30 @@ public class MySqlDbDocer {
 
         cell1.setHorizontalAlignment(Cell.ALIGN_CENTER);
         cell1.setBackgroundColor(c);
+        table.addCell(cell1);
+
         cell2.setHorizontalAlignment(Cell.ALIGN_CENTER);
         cell2.setBackgroundColor(c);
+        table.addCell(cell2);
+
         cell3.setHorizontalAlignment(Cell.ALIGN_CENTER);
         cell3.setBackgroundColor(c);
+        table.addCell(cell3);
+
         cell4.setHorizontalAlignment(Cell.ALIGN_CENTER);
         cell4.setBackgroundColor(c);
+        table.addCell(cell4);
+
         cell5.setHorizontalAlignment(Cell.ALIGN_CENTER);
         cell5.setBackgroundColor(c);
+        table.addCell(cell5);
+
         cell6.setHorizontalAlignment(Cell.ALIGN_CENTER);
         cell6.setBackgroundColor(c);
+        table.addCell(cell6);
+
         cell7.setHorizontalAlignment(Cell.ALIGN_CENTER);
         cell7.setBackgroundColor(c);
-
-        table.addCell(cell1);
-        table.addCell(cell2);
-        table.addCell(cell3);
-        table.addCell(cell4);
-        table.addCell(cell5);
-        table.addCell(cell6);
         table.addCell(cell7);
 
         table.endHeaders();// 表头结束
