@@ -35,16 +35,16 @@ public class MySqlDbDocer {
 
             nullType.put("NO", "NO");
             nullType.put("YES", "");
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    private static String schema = "*";
-    private static String url = "jdbc:mysql://*:*/" + schema + "?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true";
-    private static String username = "*";
-    private static String password = "*";
+    private static String schema = "tch";
+    private static String url = "jdbc:mysql://localhost:3306/" + schema + "?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false";
+    private static String username = "root";
+    private static String password = "Lollipop.1";
 
     //查询所有表的sql语句
     private static String sql_get_all_tables =
@@ -109,15 +109,15 @@ public class MySqlDbDocer {
      * @throws Exception the exception
      */
     public static void addTableDetail(Document document, List columns) throws Exception {
-        Table table = new Table(7);
+        Table table = new Table(5);
         table.setWidth(100f);//表格 宽度100%
         table.setBorderWidth(1);
         table.setBorderColor(Color.BLACK);
         table.setPadding(0);
         table.setSpacing(0);
 
-        Cell cell1 = new Cell("序号");// 单元格
-        cell1.setHeader(true);
+//        Cell cell1 = new Cell("序号");// 单元格
+//        cell1.setHeader(true);
 
         Cell cell2 = new Cell("列名");// 单元格
         cell2.setHeader(true);
@@ -125,8 +125,8 @@ public class MySqlDbDocer {
         Cell cell3 = new Cell("类型");// 单元格
         cell3.setHeader(true);
 
-        Cell cell4 = new Cell("长度");// 单元格
-        cell4.setHeader(true);
+//        Cell cell4 = new Cell("长度");// 单元格
+//        cell4.setHeader(true);
 
         Cell cell5 = new Cell("键");// 单元格
         cell5.setHeader(true);
@@ -138,12 +138,13 @@ public class MySqlDbDocer {
         cell6.setHeader(true);
 
         //设置表头格式
-        table.setWidths(new float[]{5f, 20f, 12f, 10f, 8f, 5f, 40f});
+//        table.setWidths(new float[]{5f, 20f, 12f, 10f, 8f, 5f, 40f});
+        table.setWidths(new float[]{30f, 12f, 8f, 10f, 40f});
         Color c = new Color(47, 101, 202);
 
-        cell1.setHorizontalAlignment(Cell.ALIGN_CENTER);
-        cell1.setBackgroundColor(c);
-        table.addCell(cell1);
+//        cell1.setHorizontalAlignment(Cell.ALIGN_CENTER);
+//        cell1.setBackgroundColor(c);
+//        table.addCell(cell1);
 
         cell2.setHorizontalAlignment(Cell.ALIGN_CENTER);
         cell2.setBackgroundColor(c);
@@ -153,9 +154,9 @@ public class MySqlDbDocer {
         cell3.setBackgroundColor(c);
         table.addCell(cell3);
 
-        cell4.setHorizontalAlignment(Cell.ALIGN_CENTER);
-        cell4.setBackgroundColor(c);
-        table.addCell(cell4);
+//        cell4.setHorizontalAlignment(Cell.ALIGN_CENTER);
+//        cell4.setBackgroundColor(c);
+//        table.addCell(cell4);
 
         cell5.setHorizontalAlignment(Cell.ALIGN_CENTER);
         cell5.setBackgroundColor(c);
@@ -174,13 +175,13 @@ public class MySqlDbDocer {
         int x = 1;
         for (Object o : columns) {
             String[] str2 = (String[]) o;
-            Cell c1 = new Cell(x + "");
+//            Cell c1 = new Cell(x + "");
             /**
              * column_name,data_type,character_octet_length,is_nullable,COLUMN_COMMENT
              */
             Cell c2 = new Cell(str2[0]);//column_name
             Cell c3 = new Cell(str2[1]);//data_type
-            Cell c4 = new Cell(str2[2]);//character_octet_length
+//            Cell c4 = new Cell(str2[2]);//character_octet_length
             String key = keyType.get(str2[3]);
             if (key == null) key = "";
             Cell c5 = new Cell(key);//COLUMN_key
@@ -191,8 +192,8 @@ public class MySqlDbDocer {
 
             Cell c7 = new Cell(str2[5]);//COLUMN_COMMENT
 
-            c1.setHorizontalAlignment(Cell.ALIGN_CENTER);
-            table.addCell(c1);
+//            c1.setHorizontalAlignment(Cell.ALIGN_CENTER);
+//            table.addCell(c1);
 
             c2.setHorizontalAlignment(Cell.ALIGN_LEFT);
             table.addCell(c2);
@@ -200,8 +201,8 @@ public class MySqlDbDocer {
             c3.setHorizontalAlignment(Cell.ALIGN_LEFT);
             table.addCell(c3);
 
-            c4.setHorizontalAlignment(Cell.ALIGN_LEFT);
-            table.addCell(c4);
+//            c4.setHorizontalAlignment(Cell.ALIGN_LEFT);
+//            table.addCell(c4);
 
             c5.setHorizontalAlignment(Cell.ALIGN_LEFT);
             table.addCell(c5);
